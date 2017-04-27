@@ -1,3 +1,10 @@
-import AppStore from './store';
+import React from 'react';
+import { render } from 'react-dom';
 
-console.log('current state', AppStore.getState());
+import AppStore from './store';
+import Application from './components/app.component';
+
+render(
+  <Application/>,
+  document.querySelector('.app-root')
+);
