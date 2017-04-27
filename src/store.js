@@ -1,5 +1,7 @@
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
+import createSagaMiddleware from 'redux-saga';
 
+const sagaMiddleware = createSagaMiddleware();
 const initialState = {
   projectId: null
 };
@@ -12,6 +14,10 @@ const reducer = (state = {}, { type, payload }) => {
   }
 };
 
-const store = createStore(reducer, initialState);
+const store = createStore(
+  reducer, 
+  initialState, 
+  applyMiddleware(sagaMiddleware)
+);
 
 export default store;
