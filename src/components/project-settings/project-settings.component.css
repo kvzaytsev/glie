@@ -1,0 +1,15 @@
+.root {
+  padding-left: 0;
+  display: flex;
+}
+
+.text-field {
+  margin-left: 16px;
+}
+
+.button-wrap {
+  margin-left: 16px;
+  margin-top: auto;
+  margin-bottom: 7px;
+  /*margin-bottom: auto;*/
+}

@@ -5,8 +5,8 @@ import { PROJECT_DATA_REQUESTED, MILESTONES_REQUESTED } from '../events';
 
 import Subheader from 'material-ui/Subheader';
 import AppBar from 'material-ui/AppBar';
-import TextField from 'material-ui/TextField';
 
+import ProjectSettings from './project-settings/project-settings.component';
 import Styles from './app.component.css';
 
 class Application extends Component {
@@ -36,41 +36,17 @@ class Application extends Component {
         />
         <div>
           <Subheader>Authentication Info</Subheader>
-          <TextField
-            hintText="GitLab API Key"
-          />
-          <div>
-            <label>API Key</label>
-            <input
-              type="text"
-              onChange={this.onApiKeyChange}
-              defaultValue={USER_API_KEY}
-              ref={input => this.apiKeyInput = input}
-            />
-          </div>
-          <div>
-            <label>Project Path</label>
-            <input
-              type="text"
-              onChange={this.onProjectPathChange}
-              defaultValue={USER_PROJECT_PATH}
-              ref={input => this.projectPathInput = input}
-            />
-          </div>
-          <button onClick={this.onGetProjectDataClick}>Get Project Data</button>
-          <br />
-          <button onClick={this.onGetMilestonesClick}>Get Milestones</button>
+          <ProjectSettings/>
         </div>
-        <div>Project ID: {this.props.projectId}</div>
       </div>
     );
   }
 
   componentDidMount() {
-    this.setState({
-      apiKey: this.apiKeyInput.value,
-      projectPath: this.projectPathInput.value
-    });
+    // this.setState({
+    //   apiKey: this.apiKeyInput.value,
+    //   projectPath: this.projectPathInput.value
+    // });
   }
 
   onApiKeyChange(event) {
