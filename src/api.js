@@ -1,4 +1,4 @@
-import { API_BASE, API_PROJECTS } from '../glie.config';
+import { API_BASE, API_PROJECTS, API_MILESTONES } from '../glie.config';
 
 export function fetchProjectData({ apiKey, projectPath }) {
   return fetch(
@@ -7,8 +7,11 @@ export function fetchProjectData({ apiKey, projectPath }) {
   );
 }
 
-export function fetchMilestones (projectId) {
-  return this.gitlabRequest("projects/" + projectId + "/milestones");
+export function fetchMilestones ({projectId, apiKey}) {
+  return fetch(
+    `${API_BASE}${API_PROJECTS}${projectId}/${API_MILESTONES}`,
+    getOptions(apiKey)
+  );
 }
 
 function getOptions(apiKey) {

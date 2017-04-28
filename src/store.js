@@ -1,24 +1,18 @@
-import { createStore, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware, combineReducers } from 'redux';
 import createSagaMiddleware from 'redux-saga';
-import rootSaga from './sagas/main';
+import rootSaga from './sagas/root.saga';
+import * as reducers from './reducers';
 
+import { PROJECT_DATA_SUCCEEDED, TOKEN_ACCEPTED } from './events';
 
 const sagaMiddleware = createSagaMiddleware();
 const initialState = {
-  projectId: null
-};
-
-const reducer = (state = {}, { type, payload }) => {
-  switch (type) {
-    case 'PROJECT_DATA.SUCCEEDED':
-      return { ...state, projectId: payload.id }
-    default:
-      return state;
-  }
+  project: null,
+  apiToken: null
 };
 
 const store = createStore(
-  reducer,
+  combineReducers(reducers),
   initialState,
   applyMiddleware(sagaMiddleware)
 );
