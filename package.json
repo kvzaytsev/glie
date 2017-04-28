@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/kvzaytsev/glie#readme",
   "dependencies": {
+    "babel-polyfill": "^6.23.0",
     "material-ui": "^0.17.4",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",

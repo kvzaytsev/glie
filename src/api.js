@@ -1,1 +1,22 @@
+import { API_BASE, API_PROJECTS } from '../glie.config';
 
+export function fetchProjectData({ apiKey, projectPath }) {
+  return fetch(
+    `${API_BASE}${API_PROJECTS}${encodeURIComponent(projectPath)}`,
+    getOptions(apiKey)
+  );
+}
+
+export function fetchMilestones (projectId) {
+  return this.gitlabRequest("projects/" + projectId + "/milestones");
+}
+
+function getOptions(apiKey) {
+  return {
+    method: 'GET',
+    headers: {
+      "PRIVATE-TOKEN": apiKey,
+      "Content-Type": "application/json; charset=utf-8",
+    }
+  }
+}
