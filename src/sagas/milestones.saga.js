@@ -1,18 +1,16 @@
-import { call, put, takeEvery } from 'redux-saga/effects';
+import { call, put, takeEvery, take, select } from 'redux-saga/effects';
 
-import { MILESTONES_REQUESTED, MILESTONES_SUCCEEDED, MILESTONES_FAILED } from '../events';
+import { PROJECT_DATA_SUCCEEDED, MILESTONES_REQUESTED, MILESTONES_SUCCEEDED, MILESTONES_FAILED } from '../events';
 import { fetchMilestones } from '../api';
 
-function* getMilestones(action) {
+export default function* getMilestones(action) {
   try {
-    const data = yield call(fetchMilestones, action.payload);
+    const project = yield select(state => state.project);
+    const apiToken = yield select(state => state.apiToken);
+    const data = yield call(fetchMilestones, { apiKey: apiToken, projectId: project.id });
     const payload = yield data.json();
     yield put({ type: MILESTONES_SUCCEEDED, payload });
   } catch (error) {
     yield put({ type: MILESTONES_FAILED, error });
   }
-}
-
-export default function* watchGetMilestones() {
-  yield takeEvery(MILESTONES_REQUESTED, getMilestones);
 }

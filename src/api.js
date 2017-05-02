@@ -7,7 +7,7 @@ export function fetchProjectData({ apiKey, projectPath }) {
   );
 }
 
-export function fetchMilestones ({projectId, apiKey}) {
+export function fetchMilestones ({apiKey, projectId}) {
   return fetch(
     `${API_BASE}${API_PROJECTS}${projectId}/${API_MILESTONES}`,
     getOptions(apiKey)

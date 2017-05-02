@@ -1,5 +1,5 @@
-import { TOKEN_ACCEPTED } from '../events';
+import { MILESTONES_SUCCEEDED } from '../events';
 
-const apiTokenReducer = (state = {}, { type, payload }) => type === TOKEN_ACCEPTED ? payload : state;
+const malistonesReducer = (state = {}, { type, payload }) => type === MILESTONES_SUCCEEDED ? payload : state;
 
-export default apiTokenReducer;
+export default malistonesReducer;

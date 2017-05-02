@@ -1,10 +1,17 @@
 .root {
-  padding-left: 0;
+  padding-left: 16px;
+}
+
+.content {
   display: flex;
 }
 
 .text-field {
   margin-left: 16px;
+}
+
+.text-field:first-child {
+  margin-left: 0px;
 }
 
 .button-wrap {
