@@ -33,6 +33,7 @@ class Application extends Component {
 
 export default connect(
   state => ({
-    milestones: state.milestones
+    milestones: state.milestones,
+    issues: state.issues
   })
 )(Application);

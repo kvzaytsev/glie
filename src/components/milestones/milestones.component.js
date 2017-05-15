@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { MILESTONES_REQUESTED } from '../../events';
+import { MILESTONES_REQUESTED, ISSUES_REQUESTED } from '../../events';
 
 import Styles from './milestones.component.css';
 
@@ -16,7 +16,8 @@ class ProjectSettings extends Component {
 
     this.bindMethods();
     this.state = {
-      selected: 'nope',
+      milestone: 'nope',
+      milestoneText: '',
       includeComments: false
     };
   }
@@ -25,6 +26,7 @@ class ProjectSettings extends Component {
     this.getMilestoneList = this.getMilestoneList.bind(this);
     this.onMilestoneChange = this.onMilestoneChange.bind(this);
     this.onIncludeCommentsChange = this.onIncludeCommentsChange.bind(this);
+    this.onRetrieveIssuesClick = this.onRetrieveIssuesClick.bind(this);
   }
 
   render() {
@@ -34,7 +36,7 @@ class ProjectSettings extends Component {
         <SelectField 
           className={Styles['select-field']} 
           disabled={this.props.milestones.length === 0} 
-          value={this.state.selected} 
+          value={this.state.milestone} 
           floatingLabelText="Milestone" 
           onChange={this.onMilestoneChange}
         >
@@ -66,7 +68,7 @@ class ProjectSettings extends Component {
   }
 
   onMilestoneChange(event, key, value) {
-    this.setState({ selected: value });
+    this.setState({ milestone: value, milestoneText: event.target.innerText });
   }
 
   onIncludeCommentsChange(event, key, value) {
@@ -99,8 +101,11 @@ export default connect(
     },
     requestIssues: (state) => {
       dispatch({
-        type: PROJECT_DATA_REQUESTED,
-        payload: { apiKey, projectPath }
+        type: ISSUES_REQUESTED,
+        payload: {
+          milestoneText: state.milestoneText  === "No milestone" ? "" : state.milestoneText,
+          includeComments: state.includeComments
+        }
       });
     }
   })

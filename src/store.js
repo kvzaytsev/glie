@@ -9,6 +9,7 @@ const sagaMiddleware = createSagaMiddleware();
 const initialState = {
   project: null,
   apiToken: null,
+  issues: [],
   milestones: []
 };
 
