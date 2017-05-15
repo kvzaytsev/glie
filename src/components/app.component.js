@@ -22,7 +22,7 @@ class Application extends Component {
   render() {
     return (
       <div>
-        <AppBar title="GitLab Issue Exporting Tool" iconElementLeft={<span/>} />
+        <AppBar title="GITLab Issue Exporting Tool" iconElementLeft={<span/>} />
         <ProjectSettings apiKey={USER_API_KEY} projectPath={USER_PROJECT_PATH}/>  
         <Milestones milestones={this.props.milestones} />
       </div>

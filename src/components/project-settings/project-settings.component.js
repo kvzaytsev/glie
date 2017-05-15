@@ -30,7 +30,6 @@ class ProjectSettings extends Component {
   render() {
     return (
       <div className={Styles.root}>
-        <Subheader>Authentication Info</Subheader>
 
         <div className={Styles.content}>
           <TextField 

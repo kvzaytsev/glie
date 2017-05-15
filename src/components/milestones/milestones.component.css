@@ -1,4 +1,22 @@
 .root {
-
   padding-left: 16px;
+  display: flex;
+}
+
+.content {
+   display: flex;
+}
+
+.select-field {
+  margin-left: 16px;
+}
+
+.select-field:first-child {
+  margin-left: 0;
+}
+
+.button-wrap {
+  margin-left: 16px;
+  margin-top: auto;
+  margin-bottom: 7px;
 }

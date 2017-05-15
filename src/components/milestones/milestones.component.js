@@ -7,6 +7,7 @@ import Styles from './milestones.component.css';
 import Subheader from 'material-ui/Subheader';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
+import FlatButton from 'material-ui/FlatButton';
 
 class ProjectSettings extends Component {
 
@@ -15,34 +16,65 @@ class ProjectSettings extends Component {
 
     this.bindMethods();
     this.state = {
-      selected: 'nope'
+      selected: 'nope',
+      includeComments: false
     };
   }
 
   bindMethods() {
     this.getMilestoneList = this.getMilestoneList.bind(this);
     this.onMilestoneChange = this.onMilestoneChange.bind(this);
+    this.onIncludeCommentsChange = this.onIncludeCommentsChange.bind(this);
   }
 
   render() {
     return (
       <div className={Styles.root}>
 
-        <Subheader>Select Milestone</Subheader>
-
-        <SelectField disabled={this.props.milestones.length === 0} value={this.state.selected} floatingLabelText="Frequency" onChange={this.onMilestoneChange}>
+        <SelectField 
+          className={Styles['select-field']} 
+          disabled={this.props.milestones.length === 0} 
+          value={this.state.selected} 
+          floatingLabelText="Milestone" 
+          onChange={this.onMilestoneChange}
+        >
           {
-            this.getMilestoneList().map(milestone =>
-              <MenuItem value={milestone.value} primaryText={milestone.text} key={milestone.key} />
-            )
+            this.getMilestoneList().map(milestone => <MenuItem value={milestone.value} primaryText={milestone.text} key={milestone.key} /> )
           }
         </SelectField>
+
+        <SelectField 
+          className={Styles['select-field']} 
+          floatingLabelText="Include Comments?" 
+          value={this.state.includeComments} 
+          onChange={this.onIncludeCommentsChange} 
+        >
+          <MenuItem value={false} primaryText="No" />
+          <MenuItem value={true} primaryText="Yes" />
+        </SelectField>
+
+        <div className={Styles['button-wrap']}>
+            <FlatButton 
+              label="Retrieve Issues" 
+              primary={true} 
+              onTouchTap={this.onRetrieveIssuesClick} 
+            />
+        </div>
+
       </div>
     );
   }
 
   onMilestoneChange(event, key, value) {
-    this.setState({selected: value});
+    this.setState({ selected: value });
+  }
+
+  onIncludeCommentsChange(event, key, value) {
+    this.setState({ includeComments: value });
+  }
+
+  onRetrieveIssuesClick() {
+    this.props.requestIssues(this.state);
   }
 
   getMilestoneList() {
@@ -63,6 +95,12 @@ export default connect(
       dispatch({
         type: MILESTONES_REQUESTED,
         payload
+      });
+    },
+    requestIssues: (state) => {
+      dispatch({
+        type: PROJECT_DATA_REQUESTED,
+        payload: { apiKey, projectPath }
       });
     }
   })
