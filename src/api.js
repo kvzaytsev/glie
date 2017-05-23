@@ -25,7 +25,7 @@ async function _fetchIssues({apiKey, projectId, milestone, includeComments}) {
     yetAnotherResult = [];
 
   do {
-    let url = `${API_BASE}${API_PROJECTS}${projectId}${API_ISSUES}?per_page=${perPage}&page=${pageCounter}`;
+    let url = `${API_BASE}${API_PROJECTS}${projectId}/${API_ISSUES}?per_page=${perPage}&page=${pageCounter}`;
     milestone && (url += `&milestone=${milestone}`);
     yetAnotherResult = await fetch(url, getOptions(apiKey));
     yetAnotherResult = await yetAnotherResult.json()

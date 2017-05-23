@@ -1,4 +1,9 @@
 body {
   margin: 0;
   font-family: 'Roboto', 'Arial', sans-serif;
+  height: 100vh;
+}
+
+.app-root {
+  
 }

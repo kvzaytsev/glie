@@ -4,9 +4,10 @@ import { ISSUES_SUCCEEDED, ISSUES_FAILED } from '../events';
 import { fetchIssues } from '../api';
 
 export default function* getIssues(action) {
-  try {
-    const project = yield select(state => state.project);
-    const apiToken = yield select(state => state.apiToken);
+  const project = yield select(state => state.project);
+  const apiToken = yield select(state => state.apiToken);
+
+  try {  
     const payload = yield call(fetchIssues, {
       projectId: project.id,
       apiKey: apiToken,
@@ -15,6 +16,7 @@ export default function* getIssues(action) {
     });
     yield put({ type: ISSUES_SUCCEEDED, payload });
   } catch (error) {
+    
     yield put({ type: ISSUES_FAILED, error });
   }
 }
