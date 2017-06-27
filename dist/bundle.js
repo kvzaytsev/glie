@@ -14254,17 +14254,6 @@ function updateLink(linkElement, options, obj) {
 "use strict";
 
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-var API_BASE = exports.API_BASE = 'https://git.epam.com/api/v3/';
-var API_PROJECTS = exports.API_PROJECTS = 'projects/';
-var API_MILESTONES = exports.API_MILESTONES = 'milestones/';
-var API_ISSUES = exports.API_ISSUES = 'issues/';
-
-var USER_API_KEY = exports.USER_API_KEY = "LQeQ2rWvi7v6gFAt9QyM";
-var USER_PROJECT_PATH = exports.USER_PROJECT_PATH = "epm-lsop/ketcher";
-
 /***/ }),
 /* 220 */
 /***/ (function(module, exports, __webpack_require__) {
