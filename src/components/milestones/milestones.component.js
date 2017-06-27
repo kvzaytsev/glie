@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+
+import GlieComponent from '../gliecomponent.component';
 import { MILESTONES_REQUESTED, ISSUES_REQUESTED } from '../../events';
 
 import Styles from './milestones.component.css';
@@ -9,12 +11,11 @@ import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import FlatButton from 'material-ui/FlatButton';
 
-class ProjectSettings extends Component {
+class ProjectSettings extends GlieComponent {
 
   constructor(props) {
     super(props);
 
-    this.bindMethods();
     this.state = {
       milestone: 'nope',
       milestoneText: '',
