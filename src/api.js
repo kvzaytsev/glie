@@ -28,7 +28,7 @@ async function _fetchIssues({apiKey, projectId, milestone, includeComments}) {
     let url = `${API_BASE}${API_PROJECTS}${projectId}/${API_ISSUES}?per_page=${perPage}&page=${pageCounter}`;
     milestone && (url += `&milestone=${milestone}`);
     yetAnotherResult = await fetch(url, getOptions(apiKey));
-    yetAnotherResult = await yetAnotherResult.json()
+    yetAnotherResult = await yetAnotherResult.json();
     accumulator.push(...yetAnotherResult);
     pageCounter++;
   } while (yetAnotherResult.length === perPage);

@@ -6,7 +6,6 @@ import { MILESTONES_REQUESTED, ISSUES_REQUESTED } from '../../events';
 
 import Styles from './milestones.component.css';
 
-import Subheader from 'material-ui/Subheader';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import FlatButton from 'material-ui/FlatButton';
